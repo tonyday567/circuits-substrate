@@ -1,0 +1,66 @@
+cabal-version: 3.0
+name: substrate
+version: 0.1.0.0
+license: BSD-3-Clause
+license-file: LICENSE
+copyright: Tony Day (c) 2025-2026
+category: control
+author: Tony Day
+maintainer: tonyday567@gmail.com
+homepage: https://github.com/tonyday567/substrate#readme
+bug-reports: https://github.com/tonyday567/substrate/issues
+synopsis: integration canary for the circuits substrate
+description:
+  substrate depends on every package in the circuits substrate and
+  provides a green-lights executable to prove they compile and link
+  together.
+
+build-type: Simple
+tested-with:
+  ghc ==9.14.1
+
+source-repository head
+  type: git
+  location: https://github.com/tonyday567/substrate
+
+common ghc-options-stanza
+  ghc-options:
+    -Wall
+    -Wno-unused-imports
+    -Wcompat
+    -Widentities
+    -Wincomplete-record-updates
+    -Wincomplete-uni-patterns
+    -Wpartial-fields
+    -Wredundant-constraints
+
+library
+  import: ghc-options-stanza
+  default-language: GHC2024
+  hs-source-dirs: src
+  exposed-modules:
+    Substrate
+  build-depends:
+    base >=4.18 && <5,
+    numhask,
+    numhask-diff,
+    numhask-space,
+    harpie,
+    harpie-numhask,
+    process-stats,
+    circuits,
+    circuits-poly,
+    circuits-ad,
+    circuits-mat,
+    circuits-parser,
+    circuits-pca,
+    circuits-llm,
+
+executable substrate-green-lights
+  import: ghc-options-stanza
+  default-language: GHC2024
+  hs-source-dirs: app
+  main-is: GreenLights.hs
+  build-depends:
+    base >=4.18 && <5,
+    substrate,

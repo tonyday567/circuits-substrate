@@ -1,0 +1,22 @@
+packages:
+  ../numhask/numhask.cabal
+  ../numhask-diff/numhask-diff.cabal
+  ../numhask-space/numhask-space.cabal
+  ../harpie/harpie.cabal
+  ../harpie-numhask/harpie-numhask.cabal
+  ../process-stats/process-stats.cabal
+  ../circuits/circuits.cabal
+  ../circuits-poly/circuits-poly.cabal
+  ../circuits-ad/circuits-ad.cabal
+  ../circuits-mat/circuits-mat.cabal
+  ../circuits-meter/circuits-meter.cabal
+  ../circuits-parser/circuits-parser.cabal
+  ../circuits-pca/circuits-pca.cabal
+  ../circuits-llm/circuits-llm.cabal
+  substrate.cabal
+
+-- Temporary hygiene workaround: tdigest on Hackage caps base < 4.22, but
+-- numhask-space builds fine with the installed GHC 9.14 / base 4.22. Remove
+-- once tdigest revises its upper bound or numhask-space drops the dep.
+allow-newer: tdigest:base
+
