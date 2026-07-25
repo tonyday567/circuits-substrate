@@ -19,6 +19,10 @@ build-type: Simple
 tested-with:
   ghc ==9.14.1
 
+extra-doc-files:
+  readme.md
+  ChangeLog.md
+
 source-repository head
   type: git
   location: https://github.com/tonyday567/substrate
