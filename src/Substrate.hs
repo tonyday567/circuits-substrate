@@ -23,6 +23,7 @@ import Circuit.PCA ()
 import Circuit.Poly.Process (systemAsProcess)
 import Circuit.Process (Process, scan)
 import Circuit.LLM.GPT ()
+import Circuit.Meter (Meter)
 
 greenLights :: IO ()
 greenLights = do
@@ -49,3 +50,5 @@ greenLights = do
   print (runParserIdentity (char 'a' :: Parser Identity String Char Char) "abc" :: These Char String)
   putStrLn "circuits-pca: green"
   putStrLn "circuits-llm: green"
+  putStrLn "circuits-meter: green"
+  print (Proxy :: Proxy (Meter (->) () ()))

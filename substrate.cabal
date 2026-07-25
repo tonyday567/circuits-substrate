@@ -59,6 +59,7 @@ library
     circuits-parser,
     circuits-pca,
     circuits-llm,
+    circuits-meter,
 
 executable substrate-green-lights
   import: ghc-options-stanza
