@@ -130,7 +130,7 @@ neighbours you are likely to bump into when working in any of the repos.
 | `hmatrix` | `harpie`, `circuits-pca`, `circuits-llm` | BLAS-backed linear algebra |
 | `random` | `harpie`, `circuits-llm` | random generation |
 | `mwc-probability` | `numhask-space`, `process-stats` | probability distributions |
-| `tdigest` | `numhask-space`, `process-stats` | approximate quantiles |
+| `dunning-t-digest` | `numhask-space`, `process-stats` | approximate quantiles (t-digest) |
 | `logict` | `circuits-parser` | backtracking parser logic |
 | `mtl` | `circuits-parser` | monad transformers |
 | `these` | `circuits-parser` | `These` result type |
@@ -186,8 +186,11 @@ development hook.
 - No parallel test frameworks (tasty, Hspec, QuickCheck) without a written
   exception.
 
-## Known workaround
+## External dependencies
 
-`numhask-space` depends on `tdigest`, which currently caps `base < 4.22`. On
-GHC 9.14 / base 4.22 this requires `allow-newer: tdigest:base` in
-`cabal.project`. Vendoring `tdigest` is planned but delayed.
+| dependency | consumers | reason |
+|---|---|---|
+| `dunning-t-digest` | `numhask-space`, `process-stats` | maintained t-digest implementation with `base < 5`; replaced the unmaintained `tdigest` package |
+
+The `allow-newer: tdigest:base` workaround has been removed from
+`cabal.project`.

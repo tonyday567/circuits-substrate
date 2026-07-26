@@ -15,8 +15,3 @@ packages:
   ../circuits-llm/circuits-llm.cabal
   substrate.cabal
 
--- Temporary hygiene workaround: tdigest on Hackage caps base < 4.22, but
--- numhask-space builds fine with the installed GHC 9.14 / base 4.22. Remove
--- once tdigest revises its upper bound or numhask-space drops the dep.
-allow-newer: tdigest:base
-
