@@ -20,8 +20,8 @@ tested-with:
   ghc ==9.14.1
 
 extra-doc-files:
-  readme.md
   ChangeLog.md
+  readme.md
 
 source-repository head
   type: git
@@ -44,22 +44,24 @@ library
   hs-source-dirs: src
   exposed-modules:
     Substrate
+
   build-depends:
     base >=4.18 && <5,
+    circuits,
+    circuits-ad,
+    circuits-agent,
+    circuits-llm,
+    circuits-mat,
+    circuits-meter,
+    circuits-parser,
+    circuits-pca,
+    circuits-poly,
+    harpie,
+    harpie-numhask,
     numhask,
     numhask-diff,
     numhask-space,
-    harpie,
-    harpie-numhask,
     process-stats,
-    circuits,
-    circuits-poly,
-    circuits-ad,
-    circuits-mat,
-    circuits-parser,
-    circuits-pca,
-    circuits-llm,
-    circuits-meter,
 
 executable substrate-green-lights
   import: ghc-options-stanza
