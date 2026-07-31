@@ -53,4 +53,4 @@ greenLights = do
   putStrLn "circuits-meter: green"
   print (Proxy :: Proxy (Meter (->) () ()))
   putStrLn "circuits-agent: green"
-  print (Post "substrate" "agent" "green" "hello" :: Post)
+  print (Post "substrate" ["agent"] "hello" :: Post)
