@@ -55,7 +55,7 @@ library
     circuits-meter,
     circuits-parser,
     circuits-pca,
-    circuits-poly,
+    string-diagrams,
     harpie,
     harpie-numhask,
     numhask,

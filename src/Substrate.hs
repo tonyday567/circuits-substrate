@@ -40,7 +40,7 @@ greenLights = do
   print (scan (ma 0.1) [1, 2, 3 :: Double])
   putStrLn "circuits: green"
   print (Proxy :: Proxy (Process Double Double))
-  putStrLn "circuits-poly: green"
+  putStrLn "string-diagrams: green"
   print (Proxy :: Proxy (Process Double Double))
   putStrLn "circuits-ad: green"
   print (Proxy :: Proxy (CAD.Diff Double Double))

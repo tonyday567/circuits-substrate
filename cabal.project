@@ -6,7 +6,7 @@ packages:
   ../harpie-numhask/harpie-numhask.cabal
   ../process-stats/process-stats.cabal
   ../circuits/circuits.cabal
-  ../circuits-poly/circuits-poly.cabal
+  ../string-diagrams/string-diagrams.cabal
   ../circuits-ad/circuits-ad.cabal
   ../circuits-mat/circuits-mat.cabal
   ../circuits-meter/circuits-meter.cabal

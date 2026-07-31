@@ -22,7 +22,7 @@ cabal run substrate-green-lights
 | 6 | `circuits` | categorical | `Circuit.Process` |
 | 7 | `circuits-ad` | categorical / AD | `Circuit.AD` |
 | 8 | `circuits-mat` | bridge | `Circuit.Mat` |
-| 9 | `circuits-poly` | bridge | `Circuit.Poly.Process` |
+| 9 | `string-diagrams` | bridge | `Circuit.Poly.Process` |
 | 10 | `process-stats` | application | `Process.Stats` |
 | 11 | `circuits-parser` | application | `Circuit.Parser` |
 | 12 | `circuits-pca` | application | `Circuit.PCA` |
@@ -53,7 +53,7 @@ graph TD
     subgraph "Layer 3 — bridges"
         CAD["circuits-ad"]
         CM["circuits-mat"]
-        CP["circuits-poly"]
+        SD["string-diagrams"]
     end
 
     subgraph "Layer 4 — applications"
@@ -77,9 +77,9 @@ graph TD
     CAD --> NHD
     CAD --> NH
 
-    CP --> C
-    CP --> CAD
-    CP --> NH
+    SD --> C
+    SD --> CAD
+    SD --> NH
 
     PS --> C
     PS --> H
