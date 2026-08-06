@@ -14,5 +14,5 @@ packages:
   ../circuits-pca/circuits-pca.cabal
   ../circuits-llm/circuits-llm.cabal
   ../circuits-agent/circuits-agent.cabal
-  substrate.cabal
+  circuits-substrate.cabal
 
