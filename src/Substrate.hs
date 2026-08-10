@@ -8,7 +8,7 @@
 module Substrate (greenLights) where
 
 import Circuit.AD qualified as CAD
-import Circuit.Agent (Post (..))
+import Circuit.Agent (Post, mkPost)
 import Circuit.LLM.GPT ()
 import Circuit.Mat (Mat)
 import Circuit.Meter (Meter)
@@ -18,6 +18,7 @@ import Circuit.Poly.Process (systemAsProcess)
 import Circuit.Process (Process, scan)
 import Data.Functor.Identity (Identity)
 import Data.Proxy (Proxy (..))
+import Data.Text (Text)
 import Harpie.Array (Array, array)
 import Harpie.NumHask ()
 import NumHask.Diff qualified as NHD
@@ -53,4 +54,4 @@ greenLights = do
   putStrLn "circuits-meter: green"
   print (Proxy :: Proxy (Meter (->) () ()))
   putStrLn "circuits-agent: green"
-  print (Post "substrate" ["agent"] "hello" :: Post)
+  print (mkPost "substrate" ["agent"] "hello" :: Post Text)

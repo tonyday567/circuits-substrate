@@ -62,6 +62,7 @@ library
     numhask-diff,
     numhask-space,
     process-stats,
+    text,
 
 executable substrate-green-lights
   import: ghc-options-stanza
@@ -70,4 +71,4 @@ executable substrate-green-lights
   main-is: GreenLights.hs
   build-depends:
     base >=4.18 && <5,
-    substrate,
+    circuits-substrate,
