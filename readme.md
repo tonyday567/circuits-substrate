@@ -22,7 +22,7 @@ cabal run substrate-green-lights
 | 6 | `circuits` | categorical | `Circuit.Process` |
 | 7 | `circuits-ad` | categorical / AD | `Circuit.AD` |
 | 8 | `circuits-mat` | bridge | `Circuit.Mat` |
-| 9 | `string-diagrams` | bridge | `Circuit.Poly.Process` |
+| 9 | `string-diagrams` | bridge | `Circuit.PolyProcess` |
 | 10 | `process-stats` | application | `Process.Stats` |
 | 11 | `circuits-parser` | application | `Circuit.Parser` |
 | 12 | `circuits-pca` | application | `Circuit.PCA` |
