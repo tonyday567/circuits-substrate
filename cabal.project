@@ -3,7 +3,6 @@ packages:
   ../numhask-diff/numhask-diff.cabal
   ../numhask-space/numhask-space.cabal
   ../harpie/harpie.cabal
-  ../harpie-numhask/harpie-numhask.cabal
   ../process-stats/process-stats.cabal
   ../circuits/circuits.cabal
   ../string-diagrams/string-diagrams.cabal

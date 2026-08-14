@@ -18,8 +18,7 @@ cabal run substrate-green-lights
 | 2 | `numhask-diff` | algebraic | `NumHask.Diff` |
 | 3 | `numhask-space` | algebraic | `NumHask.Space` |
 | 4 | `harpie` | array | `Harpie.Array` |
-| 5 | `harpie-numhask` | array | `Harpie.NumHask` |
-| 6 | `circuits` | categorical | `Circuit.Process` |
+| 5 | `circuits` | categorical | `Circuit.Process` |
 | 7 | `circuits-ad` | categorical / AD | `Circuit.AD` |
 | 8 | `circuits-mat` | bridge | `Circuit.Mat` |
 | 9 | `string-diagrams` | bridge | `Circuit.PolyProcess` |
@@ -43,7 +42,6 @@ graph TD
     subgraph "Layer 1 — derived foundations"
         NHD["numhask-diff"]
         NHS["numhask-space"]
-        HN["harpie-numhask"]
     end
 
     subgraph "Layer 2 — categorical substrate"
@@ -65,15 +63,13 @@ graph TD
 
     NHD --> NH
     NHS --> NH
-    HN --> H
-    HN --> NH
 
     CM --> C
     CM --> H
     CM --> NH
 
     CAD --> C
-    CAD --> HN
+    CAD --> CM
     CAD --> NHD
     CAD --> NH
 
@@ -83,13 +79,11 @@ graph TD
 
     PS --> C
     PS --> H
-    PS --> HN
     PS --> NH
     PS --> NHD
 
     CPAR --> C
     CPAR --> H
-    CPAR --> HN
     CPAR --> NH
     CPAR --> NHD
     CPAR --> PS
@@ -97,7 +91,6 @@ graph TD
     CPA --> C
     CPA --> CAD
     CPA --> H
-    CPA --> HN
     CPA --> NH
 
     CLLM --> CAD
@@ -117,10 +110,10 @@ neighbours you are likely to bump into when working in any of the repos.
 |---|---|---|
 | `profunctors` | `circuits`, `process-stats` | categorical plumbing |
 | `stm` | `circuits` | channel-level concurrency |
-| `adjunctions` | `numhask-space`, `harpie`, `harpie-numhask` | representable/functorial arrays |
+| `adjunctions` | `numhask-space`, `harpie` | representable/functorial arrays |
 | `distributive` | `numhask-space`, `harpie` | distributive functors |
 | `semigroupoids` | `numhask-space` | semigroupoid instances |
-| `first-class-families` | `harpie`, `harpie-numhask` | type-level computation |
+| `first-class-families` | `harpie` | type-level computation |
 | `vector` | `harpie`, `numhask-space`, `process-stats`, … | boxed/unboxed arrays |
 | `vector-algorithms` | `harpie`, `process-stats` | sorting vectors |
 | `containers` | `numhask`, `numhask-space`, `process-stats`, … | maps and sets |
@@ -135,7 +128,7 @@ neighbours you are likely to bump into when working in any of the repos.
 | `mtl` | `circuits-parser` | monad transformers |
 | `these` | `circuits-parser` | `These` result type |
 | `process` | `circuits-parser` | spawning external processes |
-| `prettyprinter` | `harpie`, `harpie-numhask` | pretty-printing arrays |
+| `prettyprinter` | `harpie`, `circuits-mat` | pretty-printing arrays |
 | `primitive` | `process-stats` | primitive arrays / ST |
 | `deepseq` | `circuits-parser`, `circuits-llm`, `circuits-meter` | strict NFData |
 | `transformers` | `circuits-ad` | standard transformers |

@@ -20,7 +20,6 @@ import Data.Functor.Identity (Identity)
 import Data.Proxy (Proxy (..))
 import Data.Text (Text)
 import Harpie.Array (Array, array)
-import Harpie.NumHask ()
 import NumHask.Diff qualified as NHD
 import NumHask.Prelude (one)
 import NumHask.Space (Point (..))
@@ -36,7 +35,6 @@ greenLights = do
   print (Point 1 2 :: Point Int)
   putStrLn "harpie: green"
   print (array [2, 2] [1, 2, 3, 4] :: Array Int)
-  putStrLn "harpie-numhask: green"
   putStrLn "process-stats: green"
   print (scan (ma 0.1) [1, 2, 3 :: Double])
   putStrLn "circuits: green"
