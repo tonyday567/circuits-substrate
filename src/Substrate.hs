@@ -7,8 +7,8 @@
 -- the whole set compiles and links together.
 module Substrate (greenLights) where
 
-import Circuit.AD qualified as CAD
 import Circuit.Agent (Post, mkPost)
+import Circuit.Diff.Circuit qualified as CDD
 import Circuit.LLM.GPT ()
 import Circuit.Mat (Mat)
 import Circuit.Meter (Meter)
@@ -20,7 +20,6 @@ import Data.Functor.Identity (Identity)
 import Data.Proxy (Proxy (..))
 import Data.Text (Text)
 import Harpie.Array (Array, array)
-import NumHask.Diff qualified as NHD
 import NumHask.Prelude (one)
 import NumHask.Space (Point (..))
 import Process.Stats (ma)
@@ -29,8 +28,8 @@ greenLights :: IO ()
 greenLights = do
   putStrLn "numhask: green"
   print (one :: Int)
-  putStrLn "numhask-diff: green"
-  print (Proxy :: Proxy (NHD.Diff Double Double))
+  putStrLn "circuits-diff: green"
+  print (Proxy :: Proxy (CDD.Diff Double Double))
   putStrLn "numhask-space: green"
   print (Point 1 2 :: Point Int)
   putStrLn "harpie: green"
@@ -41,8 +40,8 @@ greenLights = do
   print (Proxy :: Proxy (Process Double Double))
   putStrLn "string-diagrams: green"
   print (Proxy :: Proxy (Process Double Double))
-  putStrLn "circuits-ad: green"
-  print (Proxy :: Proxy (CAD.Diff Double Double))
+  putStrLn "circuits-diff: green"
+  print (Proxy :: Proxy (CDD.Diff Double Double))
   putStrLn "circuits-mat: green"
   print (Proxy :: Proxy (Mat Double () ()))
   putStrLn "circuits-parser: green"
