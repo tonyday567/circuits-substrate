@@ -1,4 +1,4 @@
-# substrate
+# circuits-substrate
 
 A local integration canary for the circuits substrate. It depends on every
 substrate package and runs a single executable, `substrate-green-lights`, that
@@ -6,100 +6,48 @@ imports one representative module from each package and prints a green line per
 package. If the canary builds, the whole substrate compiles and links together.
 
 ```bash
-cd ~/haskell/substrate
+cd ~/haskell/circuits-substrate
+cabal build all
 cabal run substrate-green-lights
 ```
 
-## The 13 substrate packages
+## The 24 substrate packages
 
-| # | package | family | representative module |
-|---|---|---|---|
-| 1 | `numhask` | algebraic | `NumHask.Prelude` |
-| 2 | `numhask-diff` | algebraic | `NumHask.Diff` |
-| 3 | `numhask-space` | algebraic | `NumHask.Space` |
-| 4 | `harpie` | array | `Harpie.Array` |
-| 5 | `circuits` | categorical | `Circuit.Process` |
-| 7 | `circuits-ad` | categorical / AD | `Circuit.AD` |
-| 8 | `circuits-mat` | bridge | `Circuit.Mat` |
-| 9 | `string-diagrams` | bridge | `Circuit.PolyProcess` |
-| 10 | `circuits-stats` | application | `Circuit.Stats` |
-| 11 | `circuits-parser` | application | `Circuit.Parser` |
-| 12 | `circuits-pca` | application | `Circuit.PCA` |
-| 13 | `circuits-llm` | application | `Circuit.LLM.GPT` |
+The substrate is everything under `~/haskell/` except `free-agent` (the
+coordination tool, a consumer rather than substrate). The canary imports one
+representative module from each of the 23 siblings plus itself.
 
-`circuits-meter` is also pointed at by `cabal.project` because `circuits-llm:bench`
-depends on it, but it is not part of the green-lights check.
+| # | package | representative module |
+|---|---|---|
+| 1 | `numhask` | `NumHask.Prelude` |
+| 2 | `numhask-space` | `NumHask.Space` |
+| 3 | `harpie` | `Harpie.Array` |
+| 4 | `formatn` | `Data.FormatN` |
+| 5 | `manyvalued` | `Circuit.Logics` |
+| 6 | `circuits` | `Circuit.Process` |
+| 7 | `circuits-diff` | `Circuit.Diff.Circuit` |
+| 8 | `circuits-mat` | `Circuit.Mat` |
+| 9 | `circuits-diagrams` | `Circuit.Poly.StringDiagram` |
+| 10 | `circuits-stats` | `Circuit.Stats` |
+| 11 | `circuits-parser` | `Circuit.Parser` |
+| 12 | `circuits-pca` | `Circuit.PCA` |
+| 13 | `circuits-llm` | `Circuit.LLM.GPT` |
+| 14 | `circuits-meter` | `Circuit.Meter` |
+| 15 | `circuits-agent` | `Circuit.Agent` |
+| 16 | `circuits-inference` | `Circuit.Inference.Prob` |
+| 17 | `circuits-learn` | `Circuit.Learn.Para` |
+| 18 | `circuits-rl` | `Circuit.RL.GridWorld` |
+| 19 | `chart-svg` | `Chart` |
+| 20 | `markup-parse` | `MarkupParse` |
+| 21 | `prettychart` | `Prettychart` |
+| 22 | `mnet` | `Net` |
+| 23 | `sysl` | `SysL` |
+| 24 | `circuits-substrate` | `Substrate` (this canary) |
 
-## Internal library dependencies
-
-```mermaid
-graph TD
-    subgraph "Layer 0 — foundations"
-        NH["numhask"]
-        H["harpie"]
-    end
-
-    subgraph "Layer 1 — derived foundations"
-        NHD["numhask-diff"]
-        NHS["numhask-space"]
-    end
-
-    subgraph "Layer 2 — categorical substrate"
-        C["circuits"]
-    end
-
-    subgraph "Layer 3 — bridges"
-        CAD["circuits-ad"]
-        CM["circuits-mat"]
-        SD["string-diagrams"]
-    end
-
-    subgraph "Layer 4 — applications"
-        PS["circuits-stats"]
-        CPAR["circuits-parser"]
-        CPA["circuits-pca"]
-        CLLM["circuits-llm"]
-    end
-
-    NHD --> NH
-    NHS --> NH
-
-    CM --> C
-    CM --> H
-    CM --> NH
-
-    CAD --> C
-    CAD --> CM
-    CAD --> NHD
-    CAD --> NH
-
-    SD --> C
-    SD --> CAD
-    SD --> NH
-
-    PS --> C
-    PS --> H
-    PS --> NH
-    PS --> NHD
-
-    CPAR --> C
-    CPAR --> H
-    CPAR --> NH
-    CPAR --> NHD
-    CPAR --> PS
-
-    CPA --> C
-    CPA --> CAD
-    CPA --> H
-    CPA --> NH
-
-    CLLM --> CAD
-    CLLM --> H
-    CLLM --> NH
-```
-
-Arrows point from dependency to dependent. The diagram shows only direct
-library-to-library edges inside the substrate; it omits the Hackage layer.
+The authoritative dependency graph is `cabal.project` (which packages are in
+scope) plus the library `build-depends` in `circuits-substrate.cabal` (which
+the canary links against). The `Substrate` module is the smoke test: one
+import per package.
 
 ## Adjacent external dependencies
 
@@ -131,8 +79,8 @@ neighbours you are likely to bump into when working in any of the repos.
 | `prettyprinter` | `harpie`, `circuits-mat` | pretty-printing arrays |
 | `primitive` | `circuits-stats` | primitive arrays / ST |
 | `deepseq` | `circuits-parser`, `circuits-llm`, `circuits-meter` | strict NFData |
-| `transformers` | `circuits-ad` | standard transformers |
-| `ad-delcont` | `circuits-ad` | AD oracle reference |
+| `transformers` | `circuits-diff` | standard transformers |
+| `ad-delcont` | `circuits-diff` | AD oracle reference |
 | `clock` | `circuits-meter` | timing measurements |
 | `optparse-applicative` | `circuits-meter` | CLI for observe executables |
 | `tasty-bench` | `circuits-parser` | benchmarking harness |
@@ -184,6 +132,3 @@ development hook.
 | dependency | consumers | reason |
 |---|---|---|
 | `dunning-t-digest` | `numhask-space`, `circuits-stats` | maintained t-digest implementation with `base < 5`; replaced the unmaintained `tdigest` package |
-
-The `allow-newer: tdigest:base` workaround has been removed from
-`cabal.project`.

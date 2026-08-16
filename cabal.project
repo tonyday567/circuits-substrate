@@ -1,17 +1,25 @@
 packages:
-  ../numhask/numhask.cabal
+  ../chart-svg/chart-svg.cabal
+  ../circuits-agent/circuits-agent.cabal
+  ../circuits-diagrams/circuits-diagrams.cabal
   ../circuits-diff/circuits-diff.cabal
-  ../numhask-space/numhask-space.cabal
-  ../harpie/harpie.cabal
-  ../circuits-stats/circuits-stats.cabal
-  ../circuits/circuits.cabal
-  ../string-diagrams/string-diagrams.cabal
-  ../circuits-diff/circuits-diff.cabal
+  ../circuits-inference/circuits-inference.cabal
+  ../circuits-learn/circuits-learn.cabal
+  ../circuits-llm/circuits-llm.cabal
   ../circuits-mat/circuits-mat.cabal
   ../circuits-meter/circuits-meter.cabal
   ../circuits-parser/circuits-parser.cabal
   ../circuits-pca/circuits-pca.cabal
-  ../circuits-llm/circuits-llm.cabal
-  ../circuits-agent/circuits-agent.cabal
+  ../circuits-rl/circuits-rl.cabal
+  ../circuits-stats/circuits-stats.cabal
+  ../circuits/circuits.cabal
+  ../formatn/formatn.cabal
+  ../harpie/harpie.cabal
+  ../manyvalued/manyvalued.cabal
+  ../markup-parse/markup-parse.cabal
+  ../mnet/mnet.cabal
+  ../numhask-space/numhask-space.cabal
+  ../numhask/numhask.cabal
+  ../prettychart/prettychart.cabal
+  ../sysl/sysl.cabal
   circuits-substrate.cabal
-
