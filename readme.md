@@ -49,6 +49,44 @@ scope) plus the library `build-depends` in `circuits-substrate.cabal` (which
 the canary links against). The `Substrate` module is the smoke test: one
 import per package.
 
+## CI
+
+11 of the 25 repos carry CI — the published libraries and the ones soon to be:
+chart-svg, circuits, circuits-meter, circuits-parser, circuits-stats, formatn,
+harpie, markup-parse, numhask, numhask-space, prettychart. The other 14 (the
+unpublished experiments and this canary) have none yet.
+
+### Default workflow
+
+`numhask-space` is the reference template (`.github/workflows/haskell-ci.yml`):
+
+- `hlint` — `fail-on: warning`.
+- `ormolu` — `haskell-actions/run-ormolu@v17`, pinned to 0.8.1.1.
+- `build` — GHC 9.14 / 9.12 / 9.10 on ubuntu, plus 9.14 on windows and macos:
+  configure, `cabal build all`, `cabal check`, then `cabal-docspec` on
+  9.14/ubuntu.
+
+### Variations from default
+
+| repo | variation | why |
+|---|---|---|
+| `harpie` | extra `hmatrix bridge` job | manual `flag hmatrix` switches in the BLAS/LAPACK compute backend; the job installs `libblas-dev liblapack-dev` and builds with `--flag hmatrix` |
+| `circuits-meter` | `Run benchmarks` step (`cabal run perf-bench`) in place of docspec | the measurement package ships showcase executables |
+| `markup-parse` | ormolu stubbed; `--enable-tests` | carries a `test-suite markup-parse-diff` (tasty-golden); ormolu disabled over a version mismatch |
+| `formatn`, `numhask` | ormolu stubbed | same ormolu version-mismatch history |
+| `chart-svg` | no `cabal-docspec` step | never added |
+| `circuits-parser` | lint-only workflow (`name: lint`, no build) | minimal workflow, never grown to the full template |
+
+### Known failure causes
+
+- **sibling `../` refs in committed `cabal.project`** — the build matrix fails on
+  CI's shallow clone because sibling dirs don't exist on the runner. The
+  convention is a self-contained `cabal.project` with sibling deps moved to the
+  gitignored `cabal.project.local`.
+- **lint debt** — commits landing without running `ormolu`/`hlint` first.
+- **doctest errors** — stale `>>>` examples across the substrate (missing
+  imports, renamed constructors), being hunted down as of this snapshot.
+
 ## Adjacent external dependencies
 
 One-step-away Hackage packages used by the substrate libraries. These are the
