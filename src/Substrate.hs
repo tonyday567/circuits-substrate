@@ -26,6 +26,7 @@ import Data.FormatN ()
 import Data.Functor.Identity (Identity)
 import Data.Proxy (Proxy (..))
 import Data.Text (Text)
+import Free.Agent.Bus ()
 import Harpie.Array (Array, array)
 import MarkupParse ()
 import Net ()
@@ -64,6 +65,7 @@ greenLights = do
   putStrLn "circuits-learn: green"
   putStrLn "circuits-rl: green"
   putStrLn "formatn: green"
+  putStrLn "free-agent: green"
   putStrLn "manyvalued: green"
   putStrLn "markup-parse: green"
   putStrLn "mnet: green"

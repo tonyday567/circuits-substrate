@@ -11,11 +11,10 @@ cabal build all
 cabal run substrate-green-lights
 ```
 
-## The 24 substrate packages
+## The 25 packages
 
-The substrate is everything under `~/haskell/` except `free-agent` (the
-coordination tool, a consumer rather than substrate). The canary imports one
-representative module from each of the 23 siblings plus itself.
+The substrate is everything under `~/haskell/` — 25 repos. The canary imports
+one representative module from each of the 24 siblings plus itself.
 
 | # | package | representative module |
 |---|---|---|
@@ -42,7 +41,8 @@ representative module from each of the 23 siblings plus itself.
 | 21 | `prettychart` | `Prettychart` |
 | 22 | `mnet` | `Net` |
 | 23 | `sysl` | `SysL` |
-| 24 | `circuits-substrate` | `Substrate` (this canary) |
+| 24 | `free-agent` | `Free.Agent.Bus` |
+| 25 | `circuits-substrate` | `Substrate` (this canary) |
 
 The authoritative dependency graph is `cabal.project` (which packages are in
 scope) plus the library `build-depends` in `circuits-substrate.cabal` (which

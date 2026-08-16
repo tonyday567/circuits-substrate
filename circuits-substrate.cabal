@@ -62,6 +62,7 @@ library
     circuits-rl,
     circuits-stats,
     formatn,
+    free-agent,
     harpie,
     manyvalued,
     markup-parse,
