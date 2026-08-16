@@ -3,7 +3,7 @@ packages:
   ../circuits-diff/circuits-diff.cabal
   ../numhask-space/numhask-space.cabal
   ../harpie/harpie.cabal
-  ../process-stats/process-stats.cabal
+  ../circuits-stats/circuits-stats.cabal
   ../circuits/circuits.cabal
   ../string-diagrams/string-diagrams.cabal
   ../circuits-diff/circuits-diff.cabal

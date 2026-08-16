@@ -60,7 +60,7 @@ library
     numhask,
     circuits-diff,
     numhask-space,
-    process-stats,
+    circuits-stats,
     text,
 
 executable substrate-green-lights

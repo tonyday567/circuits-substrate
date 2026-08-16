@@ -22,7 +22,7 @@ cabal run substrate-green-lights
 | 7 | `circuits-ad` | categorical / AD | `Circuit.AD` |
 | 8 | `circuits-mat` | bridge | `Circuit.Mat` |
 | 9 | `string-diagrams` | bridge | `Circuit.PolyProcess` |
-| 10 | `process-stats` | application | `Process.Stats` |
+| 10 | `circuits-stats` | application | `Circuit.Stats` |
 | 11 | `circuits-parser` | application | `Circuit.Parser` |
 | 12 | `circuits-pca` | application | `Circuit.PCA` |
 | 13 | `circuits-llm` | application | `Circuit.LLM.GPT` |
@@ -55,7 +55,7 @@ graph TD
     end
 
     subgraph "Layer 4 — applications"
-        PS["process-stats"]
+        PS["circuits-stats"]
         CPAR["circuits-parser"]
         CPA["circuits-pca"]
         CLLM["circuits-llm"]
@@ -108,28 +108,28 @@ neighbours you are likely to bump into when working in any of the repos.
 
 | package | used by | role |
 |---|---|---|
-| `profunctors` | `circuits`, `process-stats` | categorical plumbing |
+| `profunctors` | `circuits`, `circuits-stats` | categorical plumbing |
 | `stm` | `circuits` | channel-level concurrency |
 | `adjunctions` | `numhask-space`, `harpie` | representable/functorial arrays |
 | `distributive` | `numhask-space`, `harpie` | distributive functors |
 | `semigroupoids` | `numhask-space` | semigroupoid instances |
 | `first-class-families` | `harpie` | type-level computation |
-| `vector` | `harpie`, `numhask-space`, `process-stats`, … | boxed/unboxed arrays |
-| `vector-algorithms` | `harpie`, `process-stats` | sorting vectors |
-| `containers` | `numhask`, `numhask-space`, `process-stats`, … | maps and sets |
-| `text` | `numhask-space`, `process-stats`, `circuits-parser`, `circuits-llm` | text values |
+| `vector` | `harpie`, `numhask-space`, `circuits-stats`, … | boxed/unboxed arrays |
+| `vector-algorithms` | `harpie`, `circuits-stats` | sorting vectors |
+| `containers` | `numhask`, `numhask-space`, `circuits-stats`, … | maps and sets |
+| `text` | `numhask-space`, `circuits-stats`, `circuits-parser`, `circuits-llm` | text values |
 | `bytestring` | `circuits-parser`, `circuits-llm` | byte streams |
 | `time` | `numhask-space` | time types |
 | `hmatrix` | `harpie`, `circuits-pca`, `circuits-llm` | BLAS-backed linear algebra |
 | `random` | `harpie`, `circuits-llm` | random generation |
-| `mwc-probability` | `numhask-space`, `process-stats` | probability distributions |
-| `dunning-t-digest` | `numhask-space`, `process-stats` | approximate quantiles (t-digest) |
+| `mwc-probability` | `numhask-space`, `circuits-stats` | probability distributions |
+| `dunning-t-digest` | `numhask-space`, `circuits-stats` | approximate quantiles (t-digest) |
 | `logict` | `circuits-parser` | backtracking parser logic |
 | `mtl` | `circuits-parser` | monad transformers |
 | `these` | `circuits-parser` | `These` result type |
 | `process` | `circuits-parser` | spawning external processes |
 | `prettyprinter` | `harpie`, `circuits-mat` | pretty-printing arrays |
-| `primitive` | `process-stats` | primitive arrays / ST |
+| `primitive` | `circuits-stats` | primitive arrays / ST |
 | `deepseq` | `circuits-parser`, `circuits-llm`, `circuits-meter` | strict NFData |
 | `transformers` | `circuits-ad` | standard transformers |
 | `ad-delcont` | `circuits-ad` | AD oracle reference |
@@ -183,7 +183,7 @@ development hook.
 
 | dependency | consumers | reason |
 |---|---|---|
-| `dunning-t-digest` | `numhask-space`, `process-stats` | maintained t-digest implementation with `base < 5`; replaced the unmaintained `tdigest` package |
+| `dunning-t-digest` | `numhask-space`, `circuits-stats` | maintained t-digest implementation with `base < 5`; replaced the unmaintained `tdigest` package |
 
 The `allow-newer: tdigest:base` workaround has been removed from
 `cabal.project`.

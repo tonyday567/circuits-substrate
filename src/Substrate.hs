@@ -22,7 +22,7 @@ import Data.Text (Text)
 import Harpie.Array (Array, array)
 import NumHask.Prelude (one)
 import NumHask.Space (Point (..))
-import Process.Stats (ma)
+import Circuit.Stats (ma)
 
 greenLights :: IO ()
 greenLights = do
@@ -34,7 +34,7 @@ greenLights = do
   print (Point 1 2 :: Point Int)
   putStrLn "harpie: green"
   print (array [2, 2] [1, 2, 3, 4] :: Array Int)
-  putStrLn "process-stats: green"
+  putStrLn "circuits-stats: green"
   print (scan (ma 0.1) [1, 2, 3 :: Double])
   putStrLn "circuits: green"
   print (Proxy :: Proxy (Process Double Double))
