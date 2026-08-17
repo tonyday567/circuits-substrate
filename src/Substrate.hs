@@ -9,6 +9,7 @@ module Substrate (greenLights) where
 
 import Chart ()
 import Circuit.Agent (Post, mkPost)
+import Circuit.Chu (Chu)
 import Circuit.Diff.Circuit qualified as CDD
 import Circuit.Inference.Prob ()
 import Circuit.LLM.GPT ()
@@ -60,6 +61,8 @@ greenLights = do
   print (Proxy :: Proxy (Meter (->) () ()))
   putStrLn "circuits-agent: green"
   print (mkPost "substrate" ["agent"] "hello" :: Post Text)
+  putStrLn "circuits-chu: green"
+  print (Proxy :: Proxy (Chu (,) Bool (->) () ()))
   putStrLn "chart-svg: green"
   putStrLn "circuits-inference: green"
   putStrLn "circuits-learn: green"

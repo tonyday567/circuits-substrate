@@ -1,6 +1,7 @@
 packages:
   ../chart-svg/chart-svg.cabal
   ../circuits-agent/circuits-agent.cabal
+  ../circuits-chu/circuits-chu.cabal
   ../circuits-diagrams/circuits-diagrams.cabal
   ../circuits-diff/circuits-diff.cabal
   ../circuits-inference/circuits-inference.cabal

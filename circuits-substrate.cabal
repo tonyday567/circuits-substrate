@@ -50,6 +50,7 @@ library
     chart-svg,
     circuits,
     circuits-agent,
+    circuits-chu,
     circuits-diagrams,
     circuits-diff,
     circuits-inference,
