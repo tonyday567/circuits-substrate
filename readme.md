@@ -11,10 +11,10 @@ cabal build all
 cabal run substrate-green-lights
 ```
 
-## The 25 packages
+## The 27 packages
 
-The substrate is everything under `~/haskell/` — 25 repos. The canary imports
-one representative module from each of the 24 siblings plus itself.
+The substrate is everything under `~/haskell/` — 27 repos. The canary imports
+one representative module from each of the 26 siblings plus itself.
 
 | # | package | representative module |
 |---|---|---|
@@ -24,25 +24,27 @@ one representative module from each of the 24 siblings plus itself.
 | 4 | `formatn` | `Data.FormatN` |
 | 5 | `manyvalued` | `Circuit.Logics` |
 | 6 | `circuits` | `Circuit.Process` |
-| 7 | `circuits-diff` | `Circuit.Diff.Circuit` |
-| 8 | `circuits-mat` | `Circuit.Mat` |
-| 9 | `circuits-diagrams` | `Circuit.Poly.StringDiagram` |
-| 10 | `circuits-stats` | `Circuit.Stats` |
-| 11 | `circuits-parser` | `Circuit.Parser` |
-| 12 | `circuits-pca` | `Circuit.PCA` |
+| 7 | `circuits-agent` | `Circuit.Agent` |
+| 8 | `circuits-chu` | `Circuit.Chu` |
+| 9 | `circuits-diff` | `Circuit.Diff.Circuit` |
+| 10 | `circuits-diagrams` | `Circuit.Poly.StringDiagram` |
+| 11 | `circuits-inference` | `Circuit.Inference.Prob` |
+| 12 | `circuits-learn` | `Circuit.Learn.Para` |
 | 13 | `circuits-llm` | `Circuit.LLM.GPT` |
-| 14 | `circuits-meter` | `Circuit.Meter` |
-| 15 | `circuits-agent` | `Circuit.Agent` |
-| 16 | `circuits-inference` | `Circuit.Inference.Prob` |
-| 17 | `circuits-learn` | `Circuit.Learn.Para` |
-| 18 | `circuits-rl` | `Circuit.RL.GridWorld` |
-| 19 | `chart-svg` | `Chart` |
-| 20 | `markup-parse` | `MarkupParse` |
-| 21 | `prettychart` | `Prettychart` |
-| 22 | `mnet` | `Net` |
-| 23 | `sysl` | `SysL` |
-| 24 | `free-agent` | `Free.Agent.Bus` |
-| 25 | `circuits-substrate` | `Substrate` (this canary) |
+| 14 | `circuits-log` | `Circuit.Log` |
+| 15 | `circuits-mat` | `Circuit.Mat` |
+| 16 | `circuits-meter` | `Circuit.Meter` |
+| 17 | `circuits-parser` | `Circuit.Parser` |
+| 18 | `circuits-pca` | `Circuit.PCA` |
+| 19 | `circuits-rl` | `Circuit.RL.GridWorld` |
+| 20 | `circuits-stats` | `Circuit.Stats` |
+| 21 | `chart-svg` | `Chart` |
+| 22 | `markup-parse` | `MarkupParse` |
+| 23 | `prettychart` | `Prettychart` |
+| 24 | `mnet` | `Net` |
+| 25 | `sysl` | `SysL` |
+| 26 | `free-agent` | `Free.Agent.Bus` |
+| 27 | `circuits-substrate` | `Substrate` (this canary) |
 
 The authoritative dependency graph is `cabal.project` (which packages are in
 scope) plus the library `build-depends` in `circuits-substrate.cabal` (which

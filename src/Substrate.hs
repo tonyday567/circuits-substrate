@@ -14,6 +14,7 @@ import Circuit.Diff.Circuit qualified as CDD
 import Circuit.Inference.Prob ()
 import Circuit.LLM.GPT ()
 import Circuit.Learn.Para ()
+import Circuit.Log (LogConfig, defaultLogConfig)
 import Circuit.Logics ()
 import Circuit.Mat (Mat)
 import Circuit.Meter (Meter)
@@ -57,6 +58,8 @@ greenLights = do
   print (runParserIdentity (char 'a' :: Parser Identity String Char Char) "abc" :: These Char String)
   putStrLn "circuits-pca: green"
   putStrLn "circuits-llm: green"
+  putStrLn "circuits-log: green"
+  print (defaultLogConfig :: LogConfig)
   putStrLn "circuits-meter: green"
   print (Proxy :: Proxy (Meter (->) () ()))
   putStrLn "circuits-agent: green"

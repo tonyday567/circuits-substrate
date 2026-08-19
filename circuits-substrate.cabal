@@ -56,6 +56,7 @@ library
     circuits-inference,
     circuits-learn,
     circuits-llm,
+    circuits-log,
     circuits-mat,
     circuits-meter,
     circuits-parser,
