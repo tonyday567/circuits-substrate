@@ -8,7 +8,7 @@ module Main where
 import Options.Applicative
 import Prelude
 
-data Status = CI_Hackage | CI_Only deriving (Eq)
+data Status = CI_Hackage | CI_Only | None deriving (Eq)
 
 data Options = Options
   { optOutput :: String,
@@ -62,40 +62,41 @@ hackageBadge repo =
 
 row :: String -> (String, Status) -> String
 row user (repo, s) =
-  "|["
-    <> repo
-    <> "](https://github.com/"
-    <> user
-    <> "/"
-    <> repo
-    <> ") |"
-    <> "![Stars](https://img.shields.io/github/stars/"
-    <> user
-    <> "/"
-    <> repo
-    <> "?style=social) |"
-    <> "[![Issues](https://img.shields.io/github/issues/"
-    <> user
-    <> "/"
-    <> repo
-    <> "?label=%22%22)](https://github.com/"
-    <> user
-    <> "/"
-    <> repo
-    <> "/issues) |"
-    <> "[![PRs](https://img.shields.io/github/issues-pr/"
-    <> user
-    <> "/"
-    <> repo
-    <> "?label=%22%22)](https://github.com/"
-    <> user
-    <> "/"
-    <> repo
-    <> "/pulls) |"
-    <> ciBadge user repo
-    <> " |"
-    <> (if s == CI_Hackage then hackageBadge repo else "")
-    <> "|\n"
+  let (ci, hkg) = (s == CI_Hackage || s == CI_Only, s == CI_Hackage)
+   in "|["
+        <> repo
+        <> "](https://github.com/"
+        <> user
+        <> "/"
+        <> repo
+        <> ") |"
+        <> "![Stars](https://img.shields.io/github/stars/"
+        <> user
+        <> "/"
+        <> repo
+        <> "?style=social) |"
+        <> "[![Issues](https://img.shields.io/github/issues/"
+        <> user
+        <> "/"
+        <> repo
+        <> "?label=%22%22)](https://github.com/"
+        <> user
+        <> "/"
+        <> repo
+        <> "/issues) |"
+        <> "[![PRs](https://img.shields.io/github/issues-pr/"
+        <> user
+        <> "/"
+        <> repo
+        <> "?label=%22%22)](https://github.com/"
+        <> user
+        <> "/"
+        <> repo
+        <> "/pulls) |"
+        <> (if ci then ciBadge user repo else "")
+        <> " |"
+        <> (if hkg then hackageBadge repo else "")
+        <> "|\n"
 
 dashHeader :: String
 dashHeader =
@@ -111,13 +112,13 @@ repos =
     ("harpie", CI_Hackage),
     ("circuits", CI_Hackage),
     ("circuits-agent", CI_Only),
-    ("circuits-chu", CI_Only),
+    ("circuits-chu", None),
     ("circuits-diagrams", CI_Only),
     ("circuits-diff", CI_Only),
     ("circuits-inference", CI_Only),
     ("circuits-learn", CI_Only),
     ("circuits-llm", CI_Only),
-    ("circuits-log", CI_Only),
+    ("circuits-log", None),
     ("circuits-mat", CI_Only),
     ("circuits-meter", CI_Only),
     ("circuits-parser", CI_Only),
