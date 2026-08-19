@@ -1,0 +1,142 @@
+-- | Generate a dashboard markdown file for the circuits substrate.
+-- Usage: cabal run circuits-substrate-dashboard [-- --output dashboard.md]
+{-# LANGUAGE ApplicativeDo #-}
+{-# LANGUAGE RecordWildCards #-}
+
+module Main where
+
+import Options.Applicative
+import Prelude
+
+data Status = CI_Hackage | CI_Only deriving (Eq)
+
+data Options = Options
+  { optOutput :: String,
+    optUser :: String
+  }
+
+options :: Parser Options
+options = do
+  optOutput <-
+    strOption
+      ( long "output"
+          <> short 'o'
+          <> metavar "FILE"
+          <> value "dashboard.md"
+          <> showDefault
+          <> help "Output markdown file"
+      )
+  optUser <-
+    strOption
+      ( long "user"
+          <> short 'u'
+          <> metavar "USER"
+          <> value "tonyday567"
+          <> showDefault
+          <> help "GitHub user or organisation"
+      )
+  pure Options {..}
+
+opts :: ParserInfo Options
+opts = info (options <**> helper) (fullDesc <> progDesc "Generate circuits-substrate dashboard")
+
+ciBadge :: String -> String -> String
+ciBadge user repo =
+  "[![build](https://github.com/"
+    <> user
+    <> "/"
+    <> repo
+    <> "/actions/workflows/haskell-ci.yml/badge.svg)](https://github.com/"
+    <> user
+    <> "/"
+    <> repo
+    <> "/actions/workflows/haskell-ci.yml)"
+
+hackageBadge :: String -> String
+hackageBadge repo =
+  "[![hackage](https://img.shields.io/hackage/v/"
+    <> repo
+    <> ".svg?label=%22%22)](https://hackage.haskell.org/package/"
+    <> repo
+    <> ")"
+
+row :: String -> (String, Status) -> String
+row user (repo, s) =
+  "|["
+    <> repo
+    <> "](https://github.com/"
+    <> user
+    <> "/"
+    <> repo
+    <> ") |"
+    <> "![Stars](https://img.shields.io/github/stars/"
+    <> user
+    <> "/"
+    <> repo
+    <> "?style=social) |"
+    <> "[![Issues](https://img.shields.io/github/issues/"
+    <> user
+    <> "/"
+    <> repo
+    <> "?label=%22%22)](https://github.com/"
+    <> user
+    <> "/"
+    <> repo
+    <> "/issues) |"
+    <> "[![PRs](https://img.shields.io/github/issues-pr/"
+    <> user
+    <> "/"
+    <> repo
+    <> "?label=%22%22)](https://github.com/"
+    <> user
+    <> "/"
+    <> repo
+    <> "/pulls) |"
+    <> ciBadge user repo
+    <> " |"
+    <> (if s == CI_Hackage then hackageBadge repo else "")
+    <> "|\n"
+
+dashHeader :: String
+dashHeader =
+  "# circuits-substrate dashboard\n\n"
+    <> "CI status, open issues/PRs, and Hackage presence for the 27 substrate packages.\n\n"
+    <> "| Name | Stars | Issues | PRs | Status | Hackage |\n"
+    <> "| ---- | ----- | ------ | --- | ------ | ------- |\n"
+
+repos :: [(String, Status)]
+repos =
+  [ ("numhask", CI_Hackage),
+    ("numhask-space", CI_Hackage),
+    ("harpie", CI_Hackage),
+    ("circuits", CI_Hackage),
+    ("circuits-agent", CI_Only),
+    ("circuits-chu", CI_Only),
+    ("circuits-diagrams", CI_Only),
+    ("circuits-diff", CI_Only),
+    ("circuits-inference", CI_Only),
+    ("circuits-learn", CI_Only),
+    ("circuits-llm", CI_Only),
+    ("circuits-log", CI_Only),
+    ("circuits-mat", CI_Only),
+    ("circuits-meter", CI_Only),
+    ("circuits-parser", CI_Only),
+    ("circuits-pca", CI_Only),
+    ("circuits-rl", CI_Only),
+    ("circuits-stats", CI_Only),
+    ("circuits-substrate", CI_Only),
+    ("chart-svg", CI_Hackage),
+    ("formatn", CI_Hackage),
+    ("manyvalued", CI_Only),
+    ("markup-parse", CI_Hackage),
+    ("mnet", CI_Only),
+    ("prettychart", CI_Hackage),
+    ("sysl", CI_Only),
+    ("free-agent", CI_Only)
+  ]
+
+main :: IO ()
+main = do
+  Options {..} <- execParser opts
+  writeFile optOutput $
+    dashHeader <> mconcat (row optUser <$> repos)
