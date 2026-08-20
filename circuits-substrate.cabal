@@ -46,7 +46,7 @@ library
     Substrate
 
   build-depends:
-    base >=4.18 && <5,
+    base >=4.20 && <5,
     chart-svg,
     circuits,
     circuits-agent,
@@ -81,7 +81,7 @@ executable substrate-green-lights
   hs-source-dirs: app
   main-is: GreenLights.hs
   build-depends:
-    base >=4.18 && <5,
+    base >=4.20 && <5,
     circuits-substrate,
 
 executable circuits-substrate-dashboard
@@ -90,5 +90,5 @@ executable circuits-substrate-dashboard
   hs-source-dirs: app
   main-is: Dashboard.hs
   build-depends:
-    base >=4.18 && <5,
-    optparse-applicative >=0.18 && <0.19,
+    base >=4.20 && <5,
+    optparse-applicative >=0.17 && <0.19,
