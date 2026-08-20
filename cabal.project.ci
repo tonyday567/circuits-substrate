@@ -1,5 +1,5 @@
 packages:
-  circuits-substrate.cabal
+  trystero.cabal
 
 source-repository-package
   type: git

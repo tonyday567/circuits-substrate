@@ -25,4 +25,4 @@ packages:
   ../numhask/numhask.cabal
   ../prettychart/prettychart.cabal
   ../sysl/sysl.cabal
-  circuits-substrate.cabal
+  trystero.cabal

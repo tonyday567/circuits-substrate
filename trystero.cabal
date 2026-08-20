@@ -1,5 +1,5 @@
 cabal-version: 3.0
-name: circuits-substrate
+name: trystero
 version: 0.1.0.0
 license: BSD-3-Clause
 license-file: LICENSE
@@ -7,11 +7,11 @@ copyright: Tony Day (c) 2025-2026
 category: control
 author: Tony Day
 maintainer: tonyday567@gmail.com
-homepage: https://github.com/tonyday567/circuits-substrate#readme
-bug-reports: https://github.com/tonyday567/circuits-substrate/issues
+homepage: https://github.com/tonyday567/trystero#readme
+bug-reports: https://github.com/tonyday567/trystero/issues
 synopsis: integration canary for the circuits substrate
 description:
-  substrate depends on every package in the circuits substrate and
+  trystero depends on every package in the circuits substrate and
   provides a green-lights executable to prove they compile and link
   together.
 
@@ -25,7 +25,7 @@ extra-doc-files:
 
 source-repository head
   type: git
-  location: https://github.com/tonyday567/circuits-substrate
+  location: https://github.com/tonyday567/trystero
 
 common ghc-options-stanza
   ghc-options:
@@ -43,7 +43,7 @@ library
   default-language: GHC2024
   hs-source-dirs: src
   exposed-modules:
-    Substrate
+    Trystero
 
   build-depends:
     base >=4.20 && <5,
@@ -75,16 +75,16 @@ library
     sysl,
     text,
 
-executable substrate-green-lights
+executable trystero-green-lights
   import: ghc-options-stanza
   default-language: GHC2024
   hs-source-dirs: app
   main-is: GreenLights.hs
   build-depends:
     base >=4.20 && <5,
-    circuits-substrate,
+    trystero,
 
-executable circuits-substrate-dashboard
+executable trystero-dashboard
   import: ghc-options-stanza
   default-language: GHC2024
   hs-source-dirs: app

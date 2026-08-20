@@ -1,4 +1,4 @@
 packages:
-  circuits-substrate.cabal
+  trystero.cabal
 
 write-ghc-environment-files: always

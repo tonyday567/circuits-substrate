@@ -5,7 +5,7 @@
 --
 -- Importing one representative module from each substrate package proves that
 -- the whole set compiles and links together.
-module Substrate (greenLights) where
+module Trystero (greenLights) where
 
 import Chart ()
 import Circuit.Agent (Post, mkPost)

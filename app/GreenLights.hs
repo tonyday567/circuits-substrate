@@ -1,6 +1,6 @@
 module Main where
 
-import Substrate (greenLights)
+import Trystero (greenLights)
 
 main :: IO ()
 main = greenLights

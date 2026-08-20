@@ -2,7 +2,7 @@
 {-# LANGUAGE RecordWildCards #-}
 
 -- | Generate a dashboard markdown file for the circuits substrate.
--- Usage: cabal run circuits-substrate-dashboard [-- --output dashboard.md]
+-- Usage: cabal run trystero-dashboard [-- --output dashboard.md]
 module Main where
 
 import Options.Applicative
@@ -38,7 +38,7 @@ options = do
   pure Options {..}
 
 opts :: ParserInfo Options
-opts = info (options <**> helper) (fullDesc <> progDesc "Generate circuits-substrate dashboard")
+opts = info (options <**> helper) (fullDesc <> progDesc "Generate trystero dashboard")
 
 ciBadge :: String -> String -> String
 ciBadge user repo =
@@ -120,7 +120,7 @@ row user (repo, s) =
 
 dashHeader :: String
 dashHeader =
-  "# circuits-substrate dashboard\n\n"
+  "# trystero dashboard\n\n"
     <> "CI status, open issues/PRs, Hackage and Stackage presence for the 27 substrate packages.\n\n"
     <> "| Name | Issues | PRs | Status | Hackage | Stackage |\n"
     <> "| ---- | ------ | --- | ------ | ------- | -------- |\n"
@@ -145,7 +145,7 @@ repos =
     ("circuits-pca", CI_Only),
     ("circuits-rl", CI_Only),
     ("circuits-stats", CI_Only),
-    ("circuits-substrate", CI_Only),
+    ("trystero", CI_Only),
     ("chart-svg", CI_Hackage),
     ("formatn", CI_Hackage),
     ("manyvalued", CI_Only),
