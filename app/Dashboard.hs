@@ -1,8 +1,8 @@
--- | Generate a dashboard markdown file for the circuits substrate.
--- Usage: cabal run circuits-substrate-dashboard [-- --output dashboard.md]
 {-# LANGUAGE ApplicativeDo #-}
 {-# LANGUAGE RecordWildCards #-}
 
+-- | Generate a dashboard markdown file for the circuits substrate.
+-- Usage: cabal run circuits-substrate-dashboard [-- --output dashboard.md]
 module Main where
 
 import Options.Applicative
@@ -60,9 +60,32 @@ hackageBadge repo =
     <> repo
     <> ")"
 
+stackageBadge :: String -> String
+stackageBadge repo =
+  "[![stackage lts](https://www.stackage.org/package/"
+    <> repo
+    <> "/badge/lts)](https://www.stackage.org/package/"
+    <> repo
+    <> ") [![stackage nightly](https://www.stackage.org/package/"
+    <> repo
+    <> "/badge/nightly)](https://www.stackage.org/package/"
+    <> repo
+    <> ")"
+
+stackagePackages :: [String]
+stackagePackages =
+  [ "numhask",
+    "numhask-space",
+    "harpie",
+    "chart-svg",
+    "formatn",
+    "markup-parse",
+    "prettychart"
+  ]
+
 row :: String -> (String, Status) -> String
 row user (repo, s) =
-  let (ci, hkg) = (s == CI_Hackage || s == CI_Only, s == CI_Hackage)
+  let (ci, hkg, stk) = (s == CI_Hackage || s == CI_Only, s == CI_Hackage, repo `elem` stackagePackages)
    in "|["
         <> repo
         <> "](https://github.com/"
@@ -70,11 +93,6 @@ row user (repo, s) =
         <> "/"
         <> repo
         <> ") |"
-        <> "![Stars](https://img.shields.io/github/stars/"
-        <> user
-        <> "/"
-        <> repo
-        <> "?style=social) |"
         <> "[![Issues](https://img.shields.io/github/issues/"
         <> user
         <> "/"
@@ -96,14 +114,16 @@ row user (repo, s) =
         <> (if ci then ciBadge user repo else "")
         <> " |"
         <> (if hkg then hackageBadge repo else "")
+        <> " |"
+        <> (if stk then stackageBadge repo else "")
         <> "|\n"
 
 dashHeader :: String
 dashHeader =
   "# circuits-substrate dashboard\n\n"
-    <> "CI status, open issues/PRs, and Hackage presence for the 27 substrate packages.\n\n"
-    <> "| Name | Stars | Issues | PRs | Status | Hackage |\n"
-    <> "| ---- | ----- | ------ | --- | ------ | ------- |\n"
+    <> "CI status, open issues/PRs, Hackage and Stackage presence for the 27 substrate packages.\n\n"
+    <> "| Name | Issues | PRs | Status | Hackage | Stackage |\n"
+    <> "| ---- | ------ | --- | ------ | ------- | -------- |\n"
 
 repos :: [(String, Status)]
 repos =
