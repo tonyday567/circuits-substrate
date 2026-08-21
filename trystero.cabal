@@ -14,11 +14,11 @@ description:
   trystero depends on every package in the circuits substrate and
   provides a green-lights executable to prove they compile and link
   together.
-
 build-type: Simple
 tested-with:
+  ghc ==9.10.1
+  ghc ==9.12.2
   ghc ==9.14.1
-
 extra-doc-files:
   ChangeLog.md
   readme.md
@@ -47,33 +47,33 @@ library
 
   build-depends:
     base >=4.20 && <5,
-    chart-svg,
-    circuits,
-    circuits-agent,
-    circuits-chu,
-    circuits-diagrams,
-    circuits-diff,
-    circuits-inference,
-    circuits-learn,
-    circuits-llm,
-    circuits-log,
-    circuits-mat,
-    circuits-meter,
-    circuits-parser,
-    circuits-pca,
-    circuits-rl,
-    circuits-stats,
-    formatn,
-    free-agent,
-    harpie,
-    manyvalued,
-    markup-parse,
-    mnet,
-    numhask,
-    numhask-space,
-    prettychart,
-    sysl,
-    text,
+    chart-svg >=0.8 && <0.9,
+    circuits >=0.3 && <0.4,
+    circuits-agent >=0.1 && <0.2,
+    circuits-chu >=0.3 && <0.4,
+    circuits-diagrams >=0.1 && <0.2,
+    circuits-diff >=0.1 && <0.2,
+    circuits-inference >=0.1 && <0.2,
+    circuits-learn >=0.1 && <0.2,
+    circuits-llm >=0.1 && <0.2,
+    circuits-log >=0.1 && <0.2,
+    circuits-mat >=0.1 && <0.2,
+    circuits-meter >=0.1 && <0.2,
+    circuits-parser >=0.1 && <0.2,
+    circuits-pca >=0.1 && <0.2,
+    circuits-rl >=0.1 && <0.2,
+    circuits-stats >=0.1 && <0.2,
+    formatn >=0.3 && <0.4,
+    free-agent >=0.1 && <0.2,
+    harpie >=0.3 && <0.4,
+    manyvalued >=0.1 && <0.2,
+    markup-parse >=0.3 && <0.4,
+    mnet >=0.1 && <0.2,
+    numhask >=0.14 && <0.15,
+    numhask-space >=0.13 && <0.14,
+    prettychart >=0.4 && <0.5,
+    sysl >=0.1 && <0.2,
+    text >=1.2 && <2.2,
 
 executable trystero-green-lights
   import: ghc-options-stanza
